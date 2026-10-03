@@ -1,0 +1,9 @@
+@use "variables" as theme;
+@use "bootstrap/scss/bootstrap" with (
+    $primary: theme.$primary,
+    $body-bg: theme.$body-bg,
+    $body-color: theme.$body-color,
+    $font-family-sans-serif: theme.$font-family-sans-serif,
+    $spacer: theme.$spacer
+);
+@use "theme" as theme-styles;

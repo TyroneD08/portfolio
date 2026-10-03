@@ -10,8 +10,6 @@
                 </div>
             </article>
         <?php endwhile; ?>
-    <?php else : ?>
-        <p>Er is geen inhoud gevonden.</p>
     <?php endif; ?>
 </main>
 
