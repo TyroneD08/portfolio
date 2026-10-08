@@ -230,7 +230,7 @@ main {
 }
 
 .flip-card:hover .flip-card-inner,
-.flip-card:focus .flip-card-inner {
+.flip-card:focus-visible .flip-card-inner {
     transform: rotateY(180deg);
 }
 
@@ -377,7 +377,7 @@ main {
 }
 
 .home-main .middle-items > div {
-    border-color: #514852;
+    border-color: transparent;
 }
 
 .home-main .middle-heading h2 {
@@ -471,12 +471,28 @@ main {
 
 .project-four {
     justify-self: end;
-    height: 250px;
-    width: 300px;  
+    height: auto;
+    width: 300px;
 }
 
 .project-row .image-placeholder {
     aspect-ratio: 1 / 1;
+}
+
+.profile-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.cv-link {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 5px;
+    background: #e84d4d;
+    color: #17151a;
+    font-size: 12px;
 }
 
 /* =========================
@@ -521,7 +537,7 @@ main {
 
 .project-row {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
     align-items: start;
     padding-bottom: 90px;
@@ -659,7 +675,6 @@ footer {
     font-size: 12px;
 }
 
-
 footer p {
     margin: 0;
 }
@@ -733,7 +748,6 @@ footer a:hover {
         gap: 35px;
     }
 
-
     .about-grid {
         padding-top: 20px;
         padding-bottom: 60px;
@@ -747,7 +761,6 @@ footer a:hover {
         grid-template-columns: 1fr;
         gap: 28px;
     }
-
 
     .image-placeholder {
         aspect-ratio: 1 / 1;
