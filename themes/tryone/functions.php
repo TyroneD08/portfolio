@@ -8,12 +8,14 @@ add_action('after_setup_theme', 'tryone_setup');
 function tryone_register_page_routes() {
 	add_rewrite_rule('^projecten/?$', 'index.php?tryone_projects=1', 'top');
 	add_rewrite_rule('^contact/?$', 'index.php?tryone_contact=1', 'top');
+	add_rewrite_rule('^over-mij/?$', 'index.php?tryone_about=1', 'top');
 }
 add_action('init', 'tryone_register_page_routes');
 
 function tryone_register_page_query_vars($query_vars) {
 	$query_vars[] = 'tryone_projects';
 	$query_vars[] = 'tryone_contact';
+	$query_vars[] = 'tryone_about';
 	return $query_vars;
 }
 add_filter('query_vars', 'tryone_register_page_query_vars');
@@ -27,18 +29,23 @@ function tryone_load_custom_page_template($template) {
 		return get_theme_file_path('page-projecten.php');
 	}
 
+	if (get_query_var('tryone_about')) {
+		return get_theme_file_path('page-over-mij.php');
+	}
+
 	return $template;
 }
 add_filter('template_include', 'tryone_load_custom_page_template');
 
-function tryone_flush_project_route() {
-	if (!get_option('tryone_project_route_flushed') || !get_option('tryone_contact_route_flushed')) {
+function tryone_flush_custom_page_routes() {
+	if (!get_option('tryone_project_route_flushed') || !get_option('tryone_contact_route_flushed') || !get_option('tryone_about_route_flushed')) {
 		flush_rewrite_rules();
 		update_option('tryone_project_route_flushed', true);
 		update_option('tryone_contact_route_flushed', true);
+		update_option('tryone_about_route_flushed', true);
 	}
 }
-add_action('init', 'tryone_flush_project_route', 99);
+add_action('init', 'tryone_flush_custom_page_routes', 99);
 
 function tryone_enqueue_assets() {
 	wp_enqueue_style(
@@ -48,31 +55,26 @@ function tryone_enqueue_assets() {
 		filemtime(get_theme_file_path('dist/css/theme.css'))
 	);
 
-	$script_dependencies = array();
-	if (is_front_page()) {
-		wp_enqueue_script(
-			'tryone-three',
-			'https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js',
-			array(),
-			'r121',
-			true
-		);
+	wp_enqueue_script(
+		'tryone-three',
+		'https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js',
+		array(),
+		'r121',
+		true
+	);
 
-		wp_enqueue_script(
-			'tryone-vanta-birds',
-			'https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.birds.min.js',
-			array('tryone-three'),
-			'0.5.24',
-			true
-		);
-
-		$script_dependencies[] = 'tryone-vanta-birds';
-	}
+	wp_enqueue_script(
+		'tryone-vanta-birds',
+		'https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.birds.min.js',
+		array('tryone-three'),
+		'0.5.24',
+		true
+	);
 
 	wp_enqueue_script(
 		'tryone-script',
 		get_theme_file_uri('dist/js/theme.js'),
-		$script_dependencies,
+		array('tryone-vanta-birds'),
 		filemtime(get_theme_file_path('dist/js/theme.js')),
 		true
 	);
@@ -87,18 +89,6 @@ function tryone_redirect_contact_form($status) {
 function tryone_contact_text_length($value) {
 	$length = preg_match_all('/./us', $value);
 	return false === $length ? PHP_INT_MAX : $length;
-}
-
-function tryone_configure_contact_mailer($mailer) {
-	$mailer->isSMTP();
-	$mailer->Host = 'smtp-mail.outlook.com';
-	$mailer->Port = 587;
-	$mailer->SMTPAuth = true;
-	$mailer->SMTPSecure = 'tls';
-	$mailer->SMTPAutoTLS = true;
-	$mailer->Username = getenv('WORDPRESS_SMTP_USERNAME');
-	$mailer->Password = getenv('WORDPRESS_SMTP_PASSWORD');
-	$mailer->setFrom($mailer->Username, wp_specialchars_decode(get_bloginfo('name'), ENT_QUOTES), false);
 }
 
 function tryone_send_contact_form() {
@@ -122,13 +112,6 @@ function tryone_send_contact_form() {
 		tryone_redirect_contact_form('error');
 	}
 
-	$smtp_username = getenv('WORDPRESS_SMTP_USERNAME');
-	$smtp_password = getenv('WORDPRESS_SMTP_PASSWORD');
-	if (!is_string($smtp_username) || !is_email($smtp_username) || !is_string($smtp_password) || '' === $smtp_password) {
-		error_log('Portfolio contact email is not configured: Outlook SMTP credentials are missing or invalid.');
-		tryone_redirect_contact_form('error');
-	}
-
 	$mail_message = sprintf(
 		"Naam: %s\nE-mailadres: %s\n\nBericht:\n%s",
 		$name,
@@ -136,17 +119,15 @@ function tryone_send_contact_form() {
 		$message
 	);
 
-	add_action('phpmailer_init', 'tryone_configure_contact_mailer');
 	$sent = wp_mail(
-		'tyronedoffei@outlook.com',
+		'tyrone.developer@outlook.com',
 		'Portfolio contact: ' . $subject,
 		$mail_message,
 		array('Reply-To: ' . $email)
 	);
-	remove_action('phpmailer_init', 'tryone_configure_contact_mailer');
 
 	if (!$sent) {
-		error_log('Portfolio contact email could not be sent through Outlook SMTP.');
+		error_log('Portfolio contact email could not be sent by the configured WordPress mail transport.');
 	}
 	tryone_redirect_contact_form($sent ? 'sent' : 'error');
 }

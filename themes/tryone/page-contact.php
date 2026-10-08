@@ -46,6 +46,8 @@
 
             <button class="contact-submit" type="submit">Verstuur bericht</button>
         </form>
+
+        <p class="contact-email-option">Liever mailen? <a href="mailto:tyrone.developer@outlook.com">tyrone.developer@outlook.com</a></p>
     </section>
 </main>
 

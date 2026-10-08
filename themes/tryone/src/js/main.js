@@ -25,11 +25,11 @@ if (revealElements.length && !prefersReducedMotion && 'IntersectionObserver' in 
     revealElements.forEach((element) => revealObserver.observe(element));
 }
 
-const homeVanta = document.querySelector('#home-vanta');
+const siteVanta = document.querySelector('#site-vanta');
 
-if (homeVanta && !prefersReducedMotion && window.VANTA) {
+if (siteVanta && !prefersReducedMotion && window.VANTA) {
     window.VANTA.BIRDS({
-        el: homeVanta,
+        el: siteVanta,
         mouseControls: true,
         touchControls: true,
         gyroControls: false,
