@@ -47,7 +47,10 @@
             <button class="contact-submit" type="submit">Verstuur bericht</button>
         </form>
 
-        <p class="contact-email-option">Liever mailen? <a href="mailto:tyrone.developer@outlook.com">tyrone.developer@outlook.com</a></p>
+        <div class="contact-links" aria-label="Andere contactmogelijkheden">
+            <a href="mailto:tyrone.developer@outlook.com">tyrone.developer@outlook.com</a>
+            <a href="https://www.linkedin.com/in/tyrone-offei-a99621439/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
     </section>
 </main>
 

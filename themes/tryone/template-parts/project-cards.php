@@ -6,9 +6,15 @@
                     <img src="<?php echo esc_url(get_theme_file_uri('img/gogogo.png')); ?>" alt="Webshop Korio">
                 </div>
                 <div class="flip-card-back">
-                    <h2>Webshop Korio</h2>
-                    <a href="https://38696.hosts2.ma-cloud.nl/Korio/" target="_blank" rel="noopener noreferrer">Bekijk project ↗</a>
-                    <a href="https://github.com/TyroneD08/Korio" target="_blank" rel="noopener noreferrer">GitHub↗</a>
+                    <div class="project-card-copy">
+                        <h2>KORIO</h2>
+                        <p>Een eenvoudige online winkel voor anime en manga.</p>
+                        <p class="project-card-technologies"><strong>Code gebruikt</strong><br>HTML<br>CSS<br>JavaScript</p>
+                    </div>
+                    <div class="project-card-links">
+                        <a href="https://38696.hosts2.ma-cloud.nl/Korio/" target="_blank" rel="noopener noreferrer">Website ↗</a>
+                        <a href="https://github.com/TyroneD08/Korio" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -24,9 +30,15 @@
                     <img src="<?php echo esc_url(get_theme_file_uri('img/Roomuss.png')); ?>" alt="Project Roomus">
                 </div>
                 <div class="flip-card-back">
-                    <h2>Discover Roomus</h2>
-                    <a href="https://38696.hosts2.ma-cloud.nl/RoomusRemodel/" target="_blank" rel="noopener noreferrer">Bekijk project ↗</a>
-                    <a href="https://github.com/TyroneD08/RoomusRemodel" target="_blank" rel="noopener noreferrer">GitHub↗</a>
+                    <div class="project-card-copy">
+                        <h2>Roomus</h2>
+                        <p>Een website voor studenten die op zoek zijn naar een kamer en een huisgenoot.</p>
+                        <p class="project-card-technologies"><strong>Code gebruikt</strong><br>HTML<br>CSS<br>JavaScript</p>
+                    </div>
+                    <div class="project-card-links">
+                        <a href="https://38696.hosts2.ma-cloud.nl/RoomusRemodel/" target="_blank" rel="noopener noreferrer">Website ↗</a>
+                        <a href="https://github.com/TyroneD08/RoomusRemodel" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,9 +54,15 @@
                     <img src="<?php echo esc_url(get_theme_file_uri('img/generated.jpg')); ?>" alt="KairoAnime">
                 </div>
                 <div class="flip-card-back">
-                    <h2>KairoAnime</h2>
-                    <a href="https://38696.hosts2.ma-cloud.nl/KiaroAnime/" target="_blank" rel="noopener noreferrer">Bekijk project ↗</a>
-                    <a href="https://github.com/TyroneD08/KairoAnime" target="_blank" rel="noopener noreferrer">GitHub↗</a>
+                    <div class="project-card-copy">
+                        <h2>KairoAnime</h2>
+                        <p>Een animewebsite waar gebruikers nieuwe anime kunnen vinden. Zoek naar anime, blader op genre en bekijk ratings</p>
+                        <p class="project-card-technologies"><strong>Code gebruikt</strong><br>HTML<br>CSS<br>JavaScript<br>API</p>
+                    </div>
+                    <div class="project-card-links">
+                        <a href="https://38696.hosts2.ma-cloud.nl/KiaroAnime/" target="_blank" rel="noopener noreferrer">Website ↗</a>
+                        <a href="https://github.com/TyroneD08/KairoAnime" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                    </div>
                 </div>
             </div>
         </div>

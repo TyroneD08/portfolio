@@ -251,24 +251,6 @@ main {
     color: #ffb6d9;
 }
 
-.contact-email-option {
-    margin: 22px 0 0;
-    color: #c5c0c8;
-    font-size: 14px;
-}
-
-.contact-email-option a {
-    color: #ffb6d9;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-.contact-email-option a:hover,
-.contact-email-option a:focus-visible {
-    color: #fff;
-}
-
-
 .projects-page > h1 {
     margin-bottom: 36px;
 }
@@ -321,34 +303,57 @@ main {
 .flip-card-back {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: stretch;
+    justify-content: space-between;
     padding: 20px;
     background: #fff;
     color: #000;
     transform: rotateY(180deg);
 }
 
+.project-card-copy {
+    text-align: left;
+}
+
 .flip-card-back h2 {
     margin: 0 0 8px;
-    font-family: "Playfair Display", Georgia, serif;
+    font-family: "DM Sans", Arial, sans-serif;
     font-size: clamp(20px, 2vw, 28px);
     font-weight: 500;
 }
 
 .flip-card-back p {
-    margin: 0 0 16px;
-    color: #d1cdc5;
+    margin: 0;
+    color: #514852;
     font-size: 14px;
 }
 
-.flip-card-back a {
-    border-bottom: 1px solid currentColor;
+.flip-card-back .project-card-technologies {
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.project-card-technologies strong {
+    font-weight: 600;
+}
+
+.project-card-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.project-card-links a {
+    border-bottom: 1px solid #ffb6d9;
     font-size: 14px;
 }
 
-.flip-card-back a:hover {
-    opacity: 0.7;
+.project-card-links a:hover,
+.project-card-links a:focus-visible {
+    color: #b64e82;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -523,14 +528,25 @@ main {
     border-radius: 5px;
     background: transparent;
     color: #fff;
-    font-size: 12px;
-    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.contact-links a {
+    color: #ffb6d9;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 .cv-link:hover,
 .cv-link:focus-visible {
-    background: #ffb6d9;
-    color: #17151a;
+    background: transparent;
+    color: #fff;
 }
 
 /* =========================
@@ -711,10 +727,9 @@ footer {
 
     padding: 25px 0 35px;
 
-    display: flex;
-
-    justify-content: space-between;
-
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
     gap: 20px;
 
     color: #b8b3bb;
@@ -724,6 +739,17 @@ footer {
 
 footer p {
     margin: 0;
+}
+
+footer .footer-email {
+    grid-column: 2;
+    color: #ffb6d9;
+    text-align: center;
+}
+
+footer .footer-email:hover,
+footer .footer-email:focus-visible {
+    color: #fff;
 }
 
 
@@ -816,7 +842,13 @@ footer a:hover {
 
 
     footer {
-        flex-wrap: wrap;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+    }
+
+    footer .footer-email {
+        grid-column: 1;
     }
 
     .contact-page {
